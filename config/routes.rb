@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
   # get 'products/name'
   # get 'products/description:text'
   # get 'products/price:decimal'
@@ -6,5 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'products#index'
-  resources :products
+  resources :products do
+    resources :reviews, only: [:new, :create]
+  end
+  resources :reviews, only: [:destroy]
 end
